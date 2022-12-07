@@ -7,6 +7,7 @@ function MyFormEvent(props) {
     const [result, setResult] = useState('Result');
     const [textInput, setTextInput] = useState('')
     const [title, setTitle] = useState('UserName')
+    const [todo, setTodo] = useState([])
 
     const handleChange = (e) => {
         setTextInput(e.target.value)
@@ -14,16 +15,19 @@ function MyFormEvent(props) {
     }
     const handleClick = () => {
         setResult(textInput)
+        let todoClone = [...todo];
+        todoClone = todoClone.concat(textInput) 
+        setTodo(todoClone)
     }
 
-    const arr = ['one', 'tow', "third"]
+    // const arr = ['one', 'tow', "third"]
     return(
         <div className="form-event">
             <Title username={title}/>
             <Input makeChange={handleChange} />
             <Button makeClick={handleClick} />
             <h1> {result} </h1>
-            {arr.map((elem) => {
+            {todo.map((elem) => {
             return(<Article name={elem} />)
         })}
             
